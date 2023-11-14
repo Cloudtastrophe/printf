@@ -1,0 +1,1 @@
+This is a simple implementation of the _printf function in C, providing basic functionality for printing characters, strings, and literal percent signs. It follows specific guidelines and supports the conversion specifiers c, s, and %.
