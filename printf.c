@@ -3,6 +3,12 @@
 #include <unistd.h>
 #include "main.h"
 
+/**
+ * _printf - Custom printf function
+ * @format: Format string
+ *
+ * Return: Number of characters printed (excluding null byte)
+ */
 int _printf(const char *format, ...)
 {
     int chara_print = 0;  /* Variable to store the number of characters printed */
@@ -41,9 +47,18 @@ int _printf(const char *format, ...)
             {
                 /* If the format specifier is 's', retrieve the next argument as a string */
                 char *str = va_arg(list_of_args, char*);
-                /* Write the string to the standard output */
-                write(1, str, strlen(str));
-                chara_print += strlen(str);
+                if (str != NULL)  /* Check if the string is not NULL */
+                {
+                    /* Write the string to the standard output */
+                    write(1, str, strlen(str));
+                    chara_print += strlen(str);
+                }
+                else
+                {
+                    /* Handle the case where the string is NULL (optional) */
+                    write(1, "(null)", 6);
+                    chara_print += 6;
+                }
             }
             else if (*format == '%')
             {
