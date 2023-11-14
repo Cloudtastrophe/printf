@@ -60,6 +60,16 @@ int _printf(const char *format, ...)
                     chara_print += 6;
                 }
             }
+            else if (*format == 'd' || *format == 'i')
+            {
+                /* If the format specifier is 'd' or 'i', retrieve the next argument as int */
+                int num = va_arg(list_of_args, int);
+                /* Print the integer and increment the count */
+                char str_num[12];  /* Assume a 32-bit int, so at most 11 digits + sign */
+                int num_len = sprintf(str_num, "%d", num);
+                write(1, str_num, num_len);
+                chara_print += num_len;
+            }
             else if (*format == '%')
             {
                 /* If the format specifier is '%', print a literal percent sign */
